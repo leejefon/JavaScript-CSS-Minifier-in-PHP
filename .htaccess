@@ -1,0 +1,2 @@
+RewriteEngine on
+RewriteRule ^compile(.*) /compressor/compress.php$1 [L]
