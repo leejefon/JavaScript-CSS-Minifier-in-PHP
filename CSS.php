@@ -35,7 +35,7 @@ class CSS {
 		 *   - Merge padding, margin, border, etc.
 		 *   - Delete empty code blocks
 		 */
-		function regx_removal($buffer) {
+		function minify($buffer) {
 			// remove comments
 			$buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
 			// remove tabs, consecutivee spaces, newlines, etc.
@@ -48,7 +48,7 @@ class CSS {
 
 		header('Content-type: text/css');
 		
-		ob_start("regx_removal");
+		ob_start("minify");
 		foreach ($this->css_files as $css_file) {
 			// make the url in css file absolute
 			echo preg_replace('/url\((?!http)(?!\'http)(?!\"http)(\"|\')?/', 'url(\1/' . str_replace("/home/leejefon/public_html/", "", $this->base_path), file_get_contents($css_file));
