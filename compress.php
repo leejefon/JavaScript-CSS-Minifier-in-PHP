@@ -12,7 +12,7 @@
 	$webroot = "/home/leejefon/public_html/";
 
 	// Required
-	// For css, multiple files can be comma separated, can not use external link (http://)
+	// For css, multiple files can be comma separated, can use external link (http://)
 	// For js, one file at a time, can use external link (http://)
 	$urls = $_GET["url"];
 

@@ -21,7 +21,7 @@ class JS {
 			}
 		} else {
 			if (startsWith($js_files, "http")) {
-				$this->js_files[] = $js_files;				
+				$this->js_files[] = $js_files;
 			} else if (file_exists($this->base_path . $js_files)) {
 				$this->js_files[] = $this->base_path . $js_files;
 			}

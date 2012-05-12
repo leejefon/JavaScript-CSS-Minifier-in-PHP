@@ -20,7 +20,9 @@ class CSS {
 				$this->add($css_file);
 			}
 		} else {
-			if (file_exists($this->base_path . $css_files)) {
+			if (startsWith($css_files, "http")) {
+				$this->css_files[] = $css_files;
+			} else if (file_exists($this->base_path . $css_files)) {
 				$this->css_files[] = $this->base_path . $css_files;
 			}
 		}
