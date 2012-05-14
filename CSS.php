@@ -53,7 +53,7 @@ class CSS {
 		ob_start("minify");
 		foreach ($this->css_files as $css_file) {
 			// make the url in css file absolute
-			echo preg_replace('/url\((?!http)(?!\'http)(?!\"http)(\"|\')?/', 'url(\1/' . str_replace("/home/leejefon/public_html/", "", $this->base_path), file_get_contents($css_file));
+			echo preg_replace('/url\((?!http)(?!\'http)(?!\"http)(\"|\')?/', 'url(\1' . str_replace($_SERVER["DOCUMENT_ROOT"], "", $this->base_path), file_get_contents($css_file));
 		}
 		ob_end_flush();
 	}

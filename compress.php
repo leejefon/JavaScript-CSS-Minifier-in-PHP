@@ -9,7 +9,7 @@
 
 	require_once("utils.php");
 
-	$webroot = "/home/leejefon/public_html/";
+	$webroot = $_SERVER["DOCUMENT_ROOT"] . "/";
 
 	// Required
 	// For css, multiple files can be comma separated, can use external link (http://)
