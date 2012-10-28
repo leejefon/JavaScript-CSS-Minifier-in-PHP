@@ -12,7 +12,7 @@ Usage
 <link rel="stylesheet" href="/compile?folder=css&url=font.css,style.css,smoothness/jquery-ui.css" />
 <script type="text/javascript" src="/compile?url=js/script.js"></script>
 ```
-* Put .htacces file n the webroot allows you to call the script by /compressor?{Params}
+* Put .htacces file n the webroot allows you to call the script by /compile?{Params}
 
 
 Parameters
