@@ -37,7 +37,7 @@ class CSS {
 		 *   - Merge padding, margin, border, etc.
 		 *   - Delete empty code blocks
 		 */
-		function minify($buffer) {
+		function regx_removal($buffer) {
 			// remove comments
 			$buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
 			// remove tabs, consecutivee spaces, newlines, etc.
@@ -50,10 +50,13 @@ class CSS {
 
 		header('Content-type: text/css');
 		
-		ob_start("minify");
+		ob_start("regx_removal");
 		foreach ($this->css_files as $css_file) {
 			// make the url in css file absolute
-			echo preg_replace('/url\((?!http)(?!\'http)(?!\"http)(\"|\')?/', 'url(\1' . str_replace($_SERVER["DOCUMENT_ROOT"], "", $this->base_path), file_get_contents($css_file));
+//			echo preg_replace('/url\((?!http)(?!\'http)(?!\"http)(\"|\')?/', 'url(\1' . str_replace($_SERVER["DOCUMENT_ROOT"], "", $this->base_path), file_get_contents($css_file));
+
+			// Fix suggested by mrXCray (https://github.com/mrXCray/)
+			echo preg_replace('/url\((?!(http|\/))(?!(\'http|\'\/))(?!(\"http|\"\/))(\"|\')?/', 'url(\1' . str_replace($_SERVER["DOCUMENT_ROOT"], "", $this->base_path), file_get_contents($css_file));
 		}
 		ob_end_flush();
 	}

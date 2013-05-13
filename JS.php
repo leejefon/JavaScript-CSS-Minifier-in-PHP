@@ -1,5 +1,7 @@
 <?php
 
+require 'packer/class.JavaScriptPacker.php';
+
 /*
  * JavaScript Compressor
  * Date Created: 2012/04/28
@@ -21,14 +23,14 @@ class JS {
 			}
 		} else {
 			if (startsWith($js_files, "http")) {
-				$this->js_files[] = $js_files;
+				$this->js_files[] = $js_files;				
 			} else if (file_exists($this->base_path . $js_files)) {
 				$this->js_files[] = $this->base_path . $js_files;
 			}
 		}
 	}
 
-	public function output() {
+	public function output($method = "minify") {
 		/*
 		 * callback for ob_start()
 		 * Compress the js files using the closure compiler
@@ -62,9 +64,14 @@ class JS {
 			return $server_output;
 		}
 
+		function packer($buffer) {
+			$packer = new JavaScriptPacker($buffer, "Normal", true, false);
+			return $packer->pack();
+		}
+
 		header('Content-type: text/javascript');
 
-		ob_start("minify");
+		ob_start($method);
 		foreach ($this->js_files as $js_file) {
 			echo file_get_contents($js_file);
 		}
